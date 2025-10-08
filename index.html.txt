@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>あなたのための薬膳レシピ</title>
+  <style>
+    body {
+      font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+      background-color: #faf8ef;
+      color: #4b3f2f;
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 30px;
+    }
+
+    .input-area {
+      background-color: #e4f2e7;
+      border-radius: 6px;
+      padding: 12px 20px;
+      display: inline-block;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
+    input[type="text"] {
+      width: 260px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #7f8c8d;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+      margin-left: 8px;
+    }
+
+    button:hover {
+      background-color: #5e6b6b;
+    }
+
+    .tag-buttons {
+      margin-top: 20px;
+    }
+
+    .tag-buttons button {
+      background: none;
+      border: 1px solid #c8c8c8;
+      color: #4b3f2f;
+      margin: 6px;
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .tag-buttons button:hover {
+      background-color: #f0f0f0;
+    }
+
+    .result {
+      margin-top: 30px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #2f4f4f;
+    }
+  </style>
+</head>
+<body>
+  <h1>🫖 あなたのための薬膳レシピ</h1>
+
+  <div class="input-area">気になる不調をえらんでください</div>
+
+  <p>あなたの体調に合わせた薬膳レシピをAIがご提案します。</p>
+
+  <div>
+    <input id="symptomInput" type="text" placeholder="例: 喉の痛み、気分の落ち込みなど">
+    <button onclick="suggestRecipe()">聞いてみる</button>
+  </div>
+
+  <p>または、下のボタンから選んでください</p>
+
+  <div class="tag-buttons">
+    <button onclick="setSymptom('疲れやすい')">疲れやすい</button>
+    <button onclick="setSymptom('冷え性')">冷え性</button>
+    <button onclick="setSymptom('目の疲れ')">目の疲れ</button>
+    <button onclick="setSymptom('胃腸の不調')">胃腸の不調</button>
+    <button onclick="setSymptom('肌荒れ')">肌荒れ</button>
+    <button onclick="setSymptom('ストレス')">ストレス</button>
+    <button onclick="setSymptom('不眠')">不眠</button>
+    <button onclick="setSymptom('肩こり')">肩こり</button>
+  </div>
+
+  <div class="result" id="result"></div>
+
+  <script>
+    function setSymptom(symptom) {
+      document.getElementById("symptomInput").value = symptom;
+      suggestRecipe();
+    }
+
+    function suggestRecipe() {
+      const symptom = document.getElementById("symptomInput").value.trim();
+      const result = document.getElementById("result");
+
+      if (!symptom) {
+        result.textContent = "不調を入力または選んでください。";
+        return;
+      }
+
+      // 簡易レシピ例
+      const recipes = {
+        "疲れやすい": "黒豆とクコの実のスープがオススメ。体に元気を与えます。",
+        "冷え性": "生姜とねぎのスープで体を芯から温めましょう。",
+        "目の疲れ": "ブルーベリーと菊花茶が効果的です。",
+        "胃腸の不調": "山薬と鶏肉のおかゆが胃を優しく整えます。",
+        "肌荒れ": "白きくらげと梨のデザートで潤いを補給しましょう。",
+        "ストレス": "百合根とナツメのスープで心を落ち着けましょう。",
+        "不眠": "クコの実と竜眼の甘いスープでリラックスを。",
+        "肩こり": "シナモンとみかんの皮入り茶が血行を促します。"
+      };
+
+      result.textContent = recipes[symptom] || `${symptom}に合う薬膳レシピを準備中です。`;
+    }
+  </script>
+</body>
+</html>
